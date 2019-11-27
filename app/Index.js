@@ -44,7 +44,7 @@ module.exports=class App{
     appConfig(){
         //set view engine
         app.set('view engine',process.env.VIEW_ENGINE);
-        app.set("layout" , "home/layout.ejs");
+        app.set("layout" , "layout.ejs");
         app.use(expressLayouts)
 
         //Public directory

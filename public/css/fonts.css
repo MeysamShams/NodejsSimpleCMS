@@ -1,0 +1,14 @@
+@font-face {
+    font-family: IranYekan;
+    /* src: url('../fonts/iranyekanweblight.eot');
+    src: url('../fonts/iranyekanweblight.eot') format('embedded-opentype'),
+         url('../fonts/iranyekanweblight.woff2') format('woff2'),
+         url('../fonts/iranyekanweblight.woff') format('woff'),
+         url('../fonts/iranyekanweblight.ttf') format('truetype');
+    font-weight: normal; */
+    src: url('../fonts/IranYekan.ttf');
+  }
+
+  *{
+       font-family: IranYekan;
+  }

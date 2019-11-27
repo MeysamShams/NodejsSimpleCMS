@@ -1,0 +1,28 @@
+<div class="form-container">
+    <div class="form-title">
+        <img src="/img/enter.svg" width="100" height="100">
+        <h3>ورود به وبسایت</h3>        
+    </div>
+    <div class="form-body">
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="username">نام کاربری</label>
+                <input type="text" id="username" name="username" placeholder="لطفا نام کاربری خود را وارد نمایید">
+                <i class="fa fa-user input-icon"></i>
+            </div>
+            <div class="form-group">
+                <label for="password">رمز عبور</label>
+                <input type="password" id="password" name="password" placeholder="لطفا رمزعبور خود را وارد نمایید">
+                <i class="fa fa-lock input-icon"></i>
+            </div>
+            <div class="form-group">
+                <button>ورود</button>
+            </div>
+        </form>
+    </div>
+    <div class="form-footer justify-center">
+        <a href="/auth/google" class="login-with-btn" id="google-btn"><i class="fab fa-google"></i></a>
+        <a href="/auth/google" class="login-with-btn" id="github-btn"><i class="fab fa-github	"></i></a>
+        <a href="/auth/google" class="login-with-btn" id="facebook-btn"><i class="fab fa-facebook-f	"></i></a>
+    </div>
+</div>

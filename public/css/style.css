@@ -1,0 +1,101 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    direction: rtl;
+}
+a{
+    text-decoration: none;
+    color: rgb(18, 115, 211);
+}
+body{
+    background: #f7f7f7;
+}
+button,input{
+    outline: 0;
+}
+.justify-center{
+    text-align: center;
+}
+.form-container{
+    background: white;
+    min-width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: right;
+}
+.form-title{
+    padding: 10px 20px;
+    /* border-bottom: 1px solid #dedede; */
+    color: #6a6a6a;
+    text-align: center;
+}
+.form-body{
+    padding: 10px 20px;
+}
+.form-footer{
+    border-top: 1px solid #dedede;
+    padding: 10px 20px;
+}
+.form-group{
+    width: 100%;
+    display: block;
+    margin: 20px 0;
+    position: relative;
+}
+.input-icon{
+    position: absolute;
+    right:  10px;
+    color: #9a9a9a;
+    bottom: 15px;
+}
+
+
+
+.form-group label{
+    display: block;
+    color: #5a5a5a;
+    margin: 10px 0;
+}
+
+.form-group input{
+    width: 100%;
+    padding: 12px 30px 12px 12px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-group button{
+    color: white;
+    border-radius: 5px;
+    border: none;
+    background: #64B5F6;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.login-with-btn {
+    display: inline-block;
+    font-size: 25px !important;
+    padding: 5px;
+    margin: 0 5px;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+}
+#google-btn{
+    background:#DB4437;
+}
+#github-btn{
+    background: #333;
+}
+#facebook-btn{
+    background: #3B5998;
+}
