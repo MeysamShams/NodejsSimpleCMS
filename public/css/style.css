@@ -43,13 +43,19 @@ button,input{
     width: 100%;
     display: block;
     margin: 20px 0;
-    position: relative;
 }
 .input-icon{
+    width: 100%;
+    position: relative;
+}
+.input-icon .icon{
     position: absolute;
-    right:  10px;
-    color: #9a9a9a;
+    right: 10px;
     bottom: 15px;
+    color: #9a9a9a;
+}
+.input-error{
+    border: 1px solid #DB4437 !important;
 }
 
 
@@ -67,7 +73,10 @@ button,input{
     border-radius: 5px;
     font-size: 14px;
 }
-
+span.text-error{
+    color: #DB4437;
+    font-size: 12px;
+}
 .form-group button{
     color: white;
     border-radius: 5px;
@@ -99,3 +108,39 @@ button,input{
 #facebook-btn{
     background: #3B5998;
 }
+
+
+/* alerts ************* */
+
+.alert{
+    width: 100%;
+    position: relative;
+    font-size: 13px;
+    padding: 20px 10px;
+    transition: 0.5s;
+
+}
+.alert-danger{
+    background: #DB443745;
+    border-radius: 5px;
+    color: #DB4437;
+}
+.close-alert{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+/* 
+.login-background{
+    width: 700px;
+    height: 500px;
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    background: url('/img/login.svg');
+} */

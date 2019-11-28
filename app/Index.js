@@ -17,6 +17,8 @@ const flash=require('connect-flash');
 //ejs layouts
 const expressLayouts = require('express-ejs-layouts');
 
+const passport=require('passport')
+
 //local variable
 const Locals=require('./helpers/Locals')
 
@@ -42,6 +44,9 @@ module.exports=class App{
 
     //main config
     appConfig(){
+        //passport 
+        require("./passport/Local-auth")
+        require("./passport/Google-auth")
         //set view engine
         app.set('view engine',process.env.VIEW_ENGINE);
         app.set("layout" , "layout.ejs");
@@ -65,6 +70,10 @@ module.exports=class App{
 
         //flash message
         app.use(flash());
+
+        //passport 
+        app.use(passport.initialize());
+        app.use(passport.session())
 
         //set local 
         app.use((req,res,next)=>{

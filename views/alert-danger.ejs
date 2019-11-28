@@ -1,0 +1,24 @@
+<% if(errors.length > 0) { %> 
+    <div class="alert alert-danger">
+        <!-- <button class="close-alert" onclick="closeAlert()">
+            <span>×</span>
+        </button>                             -->
+        <% errors.forEach(error => { %>
+            <%= error %><br>
+        <% }) %>
+    </div>
+<% } %>
+
+<script>
+    // function closeAlert(){
+    //    let alert=document.querySelector('.alert')
+    //    console.log(alert)
+    // }
+
+    // function hideAlert(){
+    //     let alert=document.querySelector('.alert')
+    //     setTimeout(() => {
+    //         alert[0].style.opacity=0;
+    //     }, 3000);
+    // }
+</script>

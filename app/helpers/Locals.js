@@ -6,7 +6,8 @@ module.exports=class Locals{
 
     helpers(){
         return{
-            auth:0
+            auth:0,
+            errors:this.req.flash('errors')
         }
     }
 }
