@@ -6,7 +6,10 @@ module.exports=class Locals{
 
     helpers(){
         return{
-            auth:0,
+            auth:{
+                check:this.req.isAuthenticated,
+                user:this.req.user
+            },
             errors:this.req.flash('errors')
         }
     }
