@@ -8,7 +8,7 @@ router.get("/",LoginCrt.index);
 
 //local login
 router.post("/auth/login",validation.loginValidation(),LoginCrt.loginProcess)
-router.get("/auth/logout",(req,res)=>req.logOut())
+router.get("/auth/logout",LoginCrt.logOut)
 
 //google login
 router.get("/auth/google",passport.authenticate('google' , { scope : ['profile' , 'email'] }))

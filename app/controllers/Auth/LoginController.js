@@ -29,6 +29,11 @@ class LoginController extends Controller{
 
         return true;
     }
+
+    logOut(req,res){
+        req.logOut();
+        res.redirect("/")
+    }
 }
 
 module.exports=new LoginController();
