@@ -1,12 +1,10 @@
 const router=require('express').Router();
-
+const DashCtr=require('../../controllers/Admin/DashController')
 router.use((req , res , next) => {
     res.locals.layout = "admin/layout";
     next();
 })
 
-router.get("/",(req,res)=>{
-    res.render("admin/home",{title:"پیشخوان "})
-})
+router.get("/",DashCtr.index)
 
 module.exports=router
