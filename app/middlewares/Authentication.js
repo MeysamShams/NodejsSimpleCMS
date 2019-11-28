@@ -22,3 +22,4 @@ class Authentication{
         res.redirect("/")
     }
 }
+module.exports=new Authentication();
