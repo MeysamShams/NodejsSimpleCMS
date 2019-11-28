@@ -47,6 +47,7 @@ module.exports=class App{
         //passport 
         require("./passport/Local-auth")
         require("./passport/Google-auth")
+        require('./passport/Github-auth')
         //set view engine
         app.set('view engine',process.env.VIEW_ENGINE);
         app.set("layout" , "layout.ejs");
