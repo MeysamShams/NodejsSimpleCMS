@@ -1,3 +1,4 @@
+var moment = require('moment-jalaali');
 module.exports=class Locals{
     constructor(req,res){
         this.req=req,
@@ -10,7 +11,13 @@ module.exports=class Locals{
                 check:this.req.isAuthenticated(),
                 user:this.req.user
             },
-            errors:this.req.flash('errors')
+            errors:this.req.flash('errors'),
+            jalaliDate:this.jalaliDate
         }
+
     }
+    jalaliDate(date){
+              return moment(date)
+    }
+    
 }

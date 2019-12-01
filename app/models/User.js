@@ -12,4 +12,4 @@ UserSchema.method.comparePassword=function(password){
     if(this.password==password) return true
     return false
 }
-module.exports=mongoose.model('user',UserSchema);
+module.exports=mongoose.model('User',UserSchema);

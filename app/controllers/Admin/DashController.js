@@ -1,6 +1,7 @@
 const Controller = require('../Controller.js')
 const User = require('../../models/User');
 const Post = require('../../models/Post');
+const Comment=require('../../models/Comment');
 
 class DashController extends Controller {
     //show dashboard
@@ -11,12 +12,16 @@ class DashController extends Controller {
 
         //count of Posts
         let postsCount=await this.countOfPosts();
+        
+        //count of comments
+        let commentsCount=await this.countOfComments();
 
         res.render("admin/home", {
             title: "پیشخوان ",
             usersCount,
             teachersCount,
-            postsCount
+            postsCount,
+            commentsCount
         })
     }
 
@@ -33,6 +38,14 @@ class DashController extends Controller {
     async countOfPosts() {
         try {
             return await Post.countDocuments({})
+        } catch (err) {
+            throw err
+        }
+    }
+
+    async countOfComments() {
+        try {
+            return await Comment.countDocuments({})
         } catch (err) {
             throw err
         }

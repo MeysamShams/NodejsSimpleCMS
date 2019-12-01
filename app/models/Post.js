@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
 const Schema=require('mongoose').Schema
+const paginate=require('mongoose-paginate');
 
 const PostSchema=new Schema({
     user:{type:Schema.Types.ObjectId,ref:'User'},
@@ -13,5 +14,9 @@ const PostSchema=new Schema({
     image:{type:String,default:'/'},
     
 },{timestamps:true});
+PostSchema.virtual('post',{
+    
+})
+mongoose.plugin(paginate)
 
-module.exports=mongoose.model('post',PostSchema);
+module.exports=mongoose.model('Post',PostSchema);

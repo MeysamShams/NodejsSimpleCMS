@@ -1,0 +1,51 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>همه مطالب
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                        <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                <a class="btn btn-success" href="/admin/newpost"> <i class="fa fa-plus pl-1"></i> افزودن مطلب جدید
+                                </a>
+                            </div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+           
+            <div class="table-responsive">
+                    <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>عنوان</th>
+                                <th>نویسنده</th>
+                                <th>متن نوشته</th>
+                                <th>تاریخ انتشار</th>
+                                <th>تنظیمات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <% posts.forEach(post=> {%> 
+                                <tr>
+                                        <td ><a href="/post/<%= post.slug %>"><%= post.title%> </a></td>
+                                        <td><%= post.user.name%></td>
+                                        <td><%=post.body.substring(0,70) %></td>
+                                        <td><%= jalaliDate(post.createdAt).format("jYYYY/jDD/jMM") %></td>
+                                        <td>
+                                            <a href="/post/delete/" ><i class="fa fa-trash-o" style="font-size:larger; "></i></a>
+                                            <a href="/post/edit/"><i class="fa fa-edit" style="font-size:larger;"></i></a>
+                                        </td>
+                                    </tr>
+                                
+                            <%})%>
+                            
+                            </tbody>
+                        </table>
+            </div>
+        </div>
+    </div>
+</div>
