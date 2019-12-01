@@ -10,7 +10,7 @@ class LoginController extends Controller{
     //login process
     loginProcess(req,res,next){
         if(this.validationData(req)){
-            passport.authenticate('local-login',{successRedirect:"/auth",failureRedirect:"/",failureFlash:true})(req,res,next)
+            passport.authenticate('local-login',{successRedirect:"/panel",failureRedirect:"/",failureFlash:true})(req,res,next)
         }
         else{this.back(req,res)}
     }
@@ -33,6 +33,12 @@ class LoginController extends Controller{
     logOut(req,res){
         req.logOut();
         res.redirect("/")
+    }
+
+    checkRole(req,res){
+        if(req.user.role=="admin") return res.redirect("/admin")
+        if(req.user.role=="teacher") return res.redirect("/teacher")
+        if(req.user.role=="user") return res.redirect("/user")
     }
 }
 

@@ -1,0 +1,123 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>دسته بندی مطالب
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
+                            class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">تنظیمات 1</a>
+                        </li>
+                        <li><a href="#">تنظیمات 2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>افزودن دسته جدید</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">تنظیمات 1</a>
+                                        </li>
+                                        <li><a href="#">تنظیمات 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <br>
+
+                            <form class="form-horizontal form-label-left" action="/admin/category" method="post"
+                                enctype="multipart/form-data">
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="name" placeholder="نام دسته بندی">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="slug"
+                                        placeholder="آدرس صفحه دسته بندی">
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" name="cat-image" class="form-control" placeholder="تصویر دسته">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">ایجاد دسته</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>همه دسته بندی ها
+                            </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">تنظیمات 1</a>
+                                        </li>
+                                        <li><a href="#">تنظیمات 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="row">
+
+                                <% allCats.forEach(cat=>{%> 
+                                        <div class="col-md-3 col-sm-6" >
+                                                <a href="/category/<%= cat.slug%>">
+
+                                                <div class="image">
+                                                    <img src="<%=cat.image %>" style="border-radius: 2px;" width="90" height="80" alt="">
+                                                </div>
+                                                <div class="caption" style="text-align: center;">
+                                                    <%= cat.name %>
+                                                </div>
+                                            </a>
+
+                                            </div>
+                                <%})%>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
