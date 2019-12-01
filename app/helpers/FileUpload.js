@@ -27,5 +27,6 @@ const ImageStorage=multer.diskStorage({
 })
 const uploadImage=multer({
     storage:ImageStorage,
+    limits:1024*1024*50
 })
 module.exports=uploadImage

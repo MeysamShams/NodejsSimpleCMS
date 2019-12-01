@@ -1,0 +1,34 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>فایل های آپلود شده
+                </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                        <a class="btn btn-success" href="/admin/upload"> <i class="fa fa-plus pl-1"></i> آپلود فایل جدید
+                                        </a>
+                                    </div>
+                        </li>
+                    </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                    <div class="row top_tiles">
+                            <% files.forEach(file=>{ %>
+                                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                        <a href="<%= file.path %>">
+                                                <div class="tile-stats">
+                                                        <div class="icon"><i class="fa fa-file"></i></div>
+                                                        <div class="count"><%= getExtName(file.path) %></div>
+                                                        <h3 style="font-size: 15px; margin:20px  10px 0 10px"><%=file.name%></h3>
+                                                        <p>اندازه : <%= byteToMB(file.size) %> MB</p>
+                                                        <input type="hidden" readonly value="<%= file.path %>">
+                                                </div>
+                                        </a>
+                                    </div>
+                                <%})%>
+                        </div>
+            </div>
+        </div>
+    </div>
