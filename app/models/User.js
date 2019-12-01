@@ -8,8 +8,9 @@ const UserSchema=new Schema({
     profileImage:{type:String,default:"/"}
 },{timestamps:true});
 
-UserSchema.method.comparePassword=function(password){
-    if(this.password==password) return true
-    return false
+
+UserSchema.methods.comparePassword=function(password){
+    return this.password==password ;
 }
+
 module.exports=mongoose.model('User',UserSchema);

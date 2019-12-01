@@ -124,11 +124,12 @@
                                     <!-- <label class="control-label col-md-2 col-sm-12 col-xs-2">انتخاب دسته</label> -->
                                     <div class="form-group col-md-4 col-sm-12 col-xs-4">
                                         <select class="form-control" name="category">
-                                            <option>انتخاب دسته بندی</option>
-                                            <option>گزینه اول</option>
-                                            <option>گزینه دوم</option>
-                                            <option>گزینه سوم</option>
-                                            <option>گزینه چهارم</option>
+                                            <% allCats.forEach(cat=>{%> 
+                                                <option value="<%= cat.id%>">
+                                                    <%= cat.name %>
+                                                </option>
+                                            <%})%>
+                                           
                                         </select>
                                     </div>
         

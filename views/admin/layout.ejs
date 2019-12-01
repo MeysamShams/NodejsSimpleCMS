@@ -67,8 +67,7 @@
 
                             <li><a><i class="fa fa-list"></i> دسته بندی مطالب<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="form.html">مشاهده دسته بندی ها</a></li>
-                                    <li><a href="form_advanced.html">افزودن دسته جدید</a></li>
+                                    <li><a href="/admin/categories">مشاهده دسته بندی ها</a></li>
 
                                 </ul>
                             </li>
@@ -107,6 +106,20 @@
                 <!-- /sidebar menu -->
 
                 <!-- /menu footer buttons -->
+                <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="تنظیمات">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="تمام صفحه" onclick="toggleFullScreen();">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="قفل" class="lock_btn">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="خروج" href="/auth/logout">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
                 
                 <!-- /menu footer buttons -->
             </div>
@@ -214,6 +227,32 @@
 <div class="right_col" role="main">
     <%-body%>
 </div>
+
+        <!-- footer content -->
+        <footer class="hidden-print">
+                <div class="pull-left">
+                    
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+    <div id="lock_screen">
+        <table>
+            <tr>
+                <td>
+                    <div class="clock"></div>
+                    <span class="unlock">
+                        <span class="fa-stack fa-5x">
+                          <i class="fa fa-square-o fa-stack-2x fa-inverse"></i>
+                          <i id="icon_lock" class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
 <!-- jQuery -->
 <script src="/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->

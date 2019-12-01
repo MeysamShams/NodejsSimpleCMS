@@ -17,10 +17,14 @@ passport.serializeUser(function(user, done) {
           passwordField:'password',
           passReqToCallback:true
       },(req,username,password,done)=>{
-          User.findOne({username},(err,user)=>{
+          try{
+            User.findOne({username},(err,user)=>{
               if(err) done(err,null)
               if(!user || !user.comparePassword(password)) return done(null,false,req.flash('errors',"اطلاعات وارد شده مطابقت ندارد."))
               done(null,user)
           })
+          }catch(err){
+            throw err
+          }
       }
   ))

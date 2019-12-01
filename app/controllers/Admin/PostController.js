@@ -1,20 +1,27 @@
 const Controller = require('../Controller.js')
 
 const Post = require('../../models/Post');
-const User=require('../../models/User')
-
+const Category=require('../../models/Category')
 class PostController extends Controller {
 
-    showForms(req,res){
-        res.render("admin/newPost")
+    async index(req,res){
+        let allCats=await this.getAllCategories();
+        res.render("admin/newPost",{title:"افزودن مطلب جدید",allCats})
     }
     
-    async store(req,res){
+    async getAllCategories(){
+        try{
+            return await Category.find({}).select('name')
+        }catch(err){
+            throw err
+        }
+    }
 
+    async store(req,res){
         try{
             const newPost=new Post({
                 user:req.user.id,
-                category:req.user.id,
+                category:req.body.category,
                 file:req.user.id,
                 title:req.body.title,
                 slug:this.slug(req.body.title),
@@ -35,7 +42,7 @@ class PostController extends Controller {
 
    async allPosts(req,res){
        let posts=await this.getAllpots();
-        res.render("admin/allposts",{posts})
+        res.render("admin/allposts",{title:"همه مطالب",posts})
     }
     async getAllpots(){
         try{
