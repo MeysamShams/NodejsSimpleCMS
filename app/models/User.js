@@ -5,7 +5,7 @@ const UserSchema=new Schema({
     username:{type:String,required:true},
     password:{type:String,trim:true,required:true},
     role:{type:String,default:'user'},
-    profileImage:{type:String,default:"/"}
+    profileImage:{type:String,default:"/uploads/default/user-profile.jpg"}
 },{timestamps:true});
 
 

@@ -41,13 +41,15 @@
 
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="<%= auth.user.profileImage %>" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>خوش آمدید,</span>
-                        <h2><%= auth.user.name %></h2>
-                    </div>
+                    <a href="/admin">
+                        <div class="profile_pic">
+                            <img src="<%= auth.user.profileImage %>" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>خوش آمدید,</span>
+                            <h2><%= auth.user.name %></h2>
+                        </div>
+                    </a>
                 </div>
                 <!-- /menu profile quick info -->
 
@@ -67,7 +69,7 @@
 
                             <li><a><i class="fa fa-list"></i> دسته بندی مطالب<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="/admin/categories">مشاهده دسته بندی ها</a></li>
+                                    <li><a href="/admin/category">مشاهده دسته بندی ها</a></li>
 
                                 </ul>
                             </li>
@@ -91,8 +93,8 @@
 
                             <li><a><i class="fa fa-table"></i> مدیریت کاربران <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="tables.html">افزودن کاربر جدید</a></li>
-                                    <li><a href="tables_dynamic.html">مشاهده کاربران</a></li>
+                                    <li><a href="/admin/adduser">افزودن کاربر جدید</a></li>
+                                    <li><a href="/admin/allUsers">مشاهده کاربران</a></li>
                                 </ul>
                             </li>
 

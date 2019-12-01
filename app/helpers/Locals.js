@@ -15,7 +15,8 @@ module.exports=class Locals{
             errors:this.req.flash('errors'),
             jalaliDate:this.jalaliDate,
             byteToMB:this.byteToMB,
-            getExtName:this.getExtName
+            getExtName:this.getExtName,
+            roleName:this.roleName
         }
 
     }
@@ -27,6 +28,13 @@ module.exports=class Locals{
     }
     getExtName(fileName){
         return path.extname(fileName)
+    }
+    roleName(role){
+        switch(role){
+            case 'teacher': return 'استاد'; break;
+            case 'user': return 'دانشجو'; break;
+            case 'admin': return 'ادمین'; break;
+        }
     }
     
 }
