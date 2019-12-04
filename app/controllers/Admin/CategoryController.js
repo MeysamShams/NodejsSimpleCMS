@@ -23,7 +23,7 @@ class CategoryController extends Controller {
                 image:req.file.path.substr(6)
             });
            await newCat.save()
-            res.redirect("/admin/categories")
+            res.redirect("/admin/category")
         }catch(err){
             this.back(req,res)
             throw err;

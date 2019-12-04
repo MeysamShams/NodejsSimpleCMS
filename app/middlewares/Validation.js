@@ -4,7 +4,7 @@ class Validation{
     loginValidation(){
         return[
             check('username')
-                .isEmail()
+                .isLength({min:5})
                 .withMessage("ایمیل وارد شده نامتبر است !"),
             
             check('password')
