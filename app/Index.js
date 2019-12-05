@@ -19,6 +19,9 @@ const expressLayouts = require('express-ejs-layouts');
 
 const passport=require('passport')
 
+//socket io
+const io=require('socket.io')(app.listen(8081))
+const Chat=require('./controllers/Admin/ChatController')
 //local variable
 const Locals=require('./helpers/Locals')
 
@@ -28,6 +31,7 @@ module.exports=class App{
         this.mongoConnention();
         this.appConfig();
         this.setRoutes();
+        this.setSocketIO();
     }
 
     //set server config
@@ -82,6 +86,9 @@ module.exports=class App{
             next()
         })
 
+    }
+    setSocketIO(){
+        io.on('connection',Chat.connection)
     }
 
     setRoutes(){

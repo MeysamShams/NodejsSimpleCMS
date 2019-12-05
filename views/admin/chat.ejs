@@ -13,54 +13,18 @@
             <div class="x_content">
                     <div class="chat-content">
                             <ul>
-                                <li>
-                                    <div class="user-info">
-                                            <img src="https://lh3.googleusercontent.com/a-/AAuE7mBEgVWOKd6-4Qj4gfdGuO0_OvLbO1soWkV3siTY" class="img-circle">
-                                    </div>
-                                    <div class="chat-message">
-                                            <div class="chat-message-author">میثم شمسبگی</div>
-                                        Aliqua nostrud reprehenderit voluptate culpborum eu sit commodo.</div>
-                                </li>
-                                <li>
-                                    <div class="user-info">
-                                            <img src="https://lh3.googleusercontent.com/a-/AAuE7mBEgVWOKd6-4Qj4gfdGuO0_OvLbO1soWkV3siTY" class="img-circle">
-                                    </div>
-                                    <div class="chat-message">
-                                            <div class="chat-message-author">میثم شمسبگی</div>
-                                        Aliqua nostrud reprehenderit voluptate culpborum eu sit commodo.</div>
-                                </li>
-                                <li>
-                                    <div class="user-info">
-                                            <img src="https://lh3.googleusercontent.com/a-/AAuE7mBEgVWOKd6-4Qj4gfdGuO0_OvLbO1soWkV3siTY" class="img-circle">
-                                    </div>
-                                    <div class="chat-message">
-                                            <div class="chat-message-author">میثم شمسبگی</div>
-                                        Aliqua nostrud reprehenderit voluptate culpborum eu sit commodo.</div>
-                                </li>
-                                <li>
-                                    <div class="user-info">
-                                            <img src="https://lh3.googleusercontent.com/a-/AAuE7mBEgVWOKd6-4Qj4gfdGuO0_OvLbO1soWkV3siTY" class="img-circle">
-                                    </div>
-                                    <div class="chat-message">
-                                            <div class="chat-message-author">میثم شمسبگی</div>
-                                        Aliqua nostrud reprehenderit voluptate culpborum eu sit commodo.</div>
-                                </li>
-                                <li>
-                                    <div class="user-info">
-                                            <img src="https://lh3.googleusercontent.com/a-/AAuE7mBEgVWOKd6-4Qj4gfdGuO0_OvLbO1soWkV3siTY" class="img-circle">
-                                    </div>
-                                    <div class="chat-message">
-                                            <div class="chat-message-author">میثم شمسبگی</div>
-                                        Aliqua nostrud reprehenderit voluptate culpborum eu sit commodo.</div>
-                                </li>
+                                
+                                
                                
                                 
                             </ul>
                         </div>
                         <div class="chat-input ">
-                                <form>
+                                <form id="chat-submit">
                                     <div class="input-group">
                                         <input type="text" class="form-control " id="chat-input" placeholder="متن پیام ...">
+                                        <input type="hidden" id="name" value="<%= auth.user.name %>">
+                                        <input type="hidden" id="avatar" value="<%= auth.user.profileImage %>">
                                         <span class="input-group-btn">
                                             <button class="btn btn-primary"> <i class="fa fa-send"></i></button>
                                         </span>

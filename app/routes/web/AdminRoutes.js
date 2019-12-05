@@ -5,7 +5,7 @@ const CategoryCtr=require('../../controllers/Admin/CategoryController')
 const FileCtr=require('../../controllers/Admin/FileController')
 const UserCtr=require('../../controllers/Admin/UserController')
 const upload=require("../../helpers/FileUpload")
-const chat=require('../../chat/Chat');
+const ChatCtr=require('../../controllers/Admin/ChatController');
 
 router.use((req , res , next) => {
     res.locals.layout = "admin/layout";
@@ -30,7 +30,7 @@ router.post("/upload",upload.single('file'),FileCtr.store)
 router.get("/allFiles",FileCtr.showAllFiles)
 
 //chat
-router.get('/chatroom',chat)
+router.get('/chatroom',ChatCtr.index)
 
 //user
 router.get("/adduser",UserCtr.index)
