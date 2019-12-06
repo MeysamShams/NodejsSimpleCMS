@@ -3,6 +3,7 @@ const validation=require('../../middlewares/Validation')
 const LoginCrt=require('../../controllers/Auth/LoginController')
 const passport = require('passport');
 
+const PostCtr=require('../../controllers/Admin/PostController.js')
 //show index page
 router.get("/",LoginCrt.index);
 
@@ -19,6 +20,7 @@ router.get("/auth/google/callback",passport.authenticate('google' , { successRed
 router.get("/auth/github",passport.authenticate('github' , { scope : ['profile' , 'email'] }))
 router.get("/auth/github/callback",passport.authenticate('github' , { successRedirect : '/panel' , failureRedirect : '/register' }))
 
+router.get("/post/:id",PostCtr.getPost)
 
 
 router.get("/user",(req,res)=>res.send(req.user))

@@ -15,10 +15,10 @@ router.use((req , res , next) => {
 router.get("/",DashCtr.index)
 
 //posts 
-router.get("/newpost",PostCtr.index);
-router.post("/newpost",upload.single("image"),PostCtr.store)
-
-router.get("/allposts",PostCtr.allPosts)
+router.get("/post",PostCtr.index);
+router.post("/post",upload.single("image"),PostCtr.store)
+router.get("/post/allposts",PostCtr.allPosts)
+router.post('/post/delete',PostCtr.delete)
 
 //category  
 router.get("/category",CategoryCtr.index)

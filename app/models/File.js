@@ -9,4 +9,4 @@ const FileSchema=new Schema({
     
 },{timestamps:true});
 
-module.exports=mongoose.model('file',FileSchema);
+module.exports=mongoose.model('File',FileSchema);

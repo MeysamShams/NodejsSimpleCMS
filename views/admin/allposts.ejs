@@ -6,7 +6,7 @@
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                         <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                <a class="btn btn-success" href="/admin/newpost"> <i class="fa fa-plus pl-1"></i> افزودن مطلب جدید
+                                <a class="btn btn-success" href="/admin/post"> <i class="fa fa-plus pl-1"></i> افزودن مطلب جدید
                                 </a>
                             </div>
                 </li>
@@ -36,8 +36,11 @@
                                         <td><%=post.body.substring(0,70) %></td>
                                         <td><%= jalaliDate(post.createdAt).format("jYYYY/jDD/jMM") %></td>
                                         <td class="nowrap">
-                                                <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> ویرایش </a>
-                                                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> حذف </a>
+                                            <form action="/admin/post/delete" method="POST">
+                                                <input type="hidden" name="id" value="<%= post.id %>">
+                                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> ویرایش </a>
+                                                    <button  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> حذف </button>
+                                                </form>
                                         </td>
                                        
                                     </tr>
