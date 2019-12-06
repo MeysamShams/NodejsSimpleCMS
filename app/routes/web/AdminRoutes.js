@@ -14,9 +14,10 @@ router.use((req , res , next) => {
 
 router.get("/",DashCtr.index)
 
-//posts managemnet
+//posts 
 router.get("/newpost",PostCtr.index);
-router.post("/newpost",PostCtr.store)
+router.post("/newpost",upload.single("image"),PostCtr.store)
+
 router.get("/allposts",PostCtr.allPosts)
 
 //category  
@@ -24,13 +25,12 @@ router.get("/category",CategoryCtr.index)
 //save new category
 router.post("/category",upload.single("cat-image"),CategoryCtr.store)
 
-//upload maneger
+//upload 
 router.get("/upload",FileCtr.index)
 router.post("/upload",upload.single('file'),FileCtr.store)
 router.get("/allFiles",FileCtr.showAllFiles)
 
-// //get all files using ajax call
-// router.get("/getFiles",FileCtr.getFiles)
+
 
 //user
 router.get("/adduser",UserCtr.index)

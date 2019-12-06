@@ -24,7 +24,7 @@
         <div class="x_content">
             <br>
             <form action="/admin/newpost" onsubmit="newPostSubmit(event)" method="POST"
-                class="form-horizontal form-label-left" novalidate="">
+                class="form-horizontal form-label-left" novalidate="" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label>عنوان مطلب</label>
@@ -105,9 +105,6 @@
                             </div>
                             <a class="btn" data-edit="unlink" title="حذف ابر لینک"><i class="fa fa-cut"></i></a>
                         </div>
-
-
-
                         <div class="btn-group">
                             <a class="btn" data-edit="undo" title="باطل کردن (Ctrl/Cmd+Z)"><i
                                     class="fa fa-undo"></i></a>
@@ -121,10 +118,35 @@
                     <textarea id="descr" name="editor_content" style="display:none;"></textarea>
                     <br>
 
+                    <!-- file and image input-->
+                    <div class="row">
+                            <div class="form-group col-md-6 col-sm-12 col-xs-6">
+                                    <label>فایل پیوست</label>
+                                <div class="input-group">
+                                    <input type="hidden" id="file-id" name="fileId" value="">
+
+                                    <input type="text" class="form-control" readonly id="file-name" value=""
+                                        placeholder="انتخاب فایل پیوست ...">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-success" id="showFiles" data-toggle="modal"
+                                            data-target=".bs-example-modal-lg"><i class="fa fa-paperclip"></i> فایل
+                                            پیوست</button> </span>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <label>تصویر شاخص</label>
+
+                                <input type="file" name="image" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+                        
+                        <!-- tags and category-->
 
                     <div class="row">
-                        <!-- <label class="control-label col-md-2 col-sm-12 col-xs-2">انتخاب دسته</label> -->
                         <div class="form-group col-md-4 col-sm-12 col-xs-4">
+                                <label>دسته بندی مطلب</label>
                             <select class="form-control" name="category">
                                 <% allCats.forEach(cat=>{%>
                                 <option value="<%= cat.id%>">
@@ -136,78 +158,13 @@
                         </div>
 
                         <div class="form-group col-md-8 col-sm-12 col-xs-8">
-                            <input type="text" class="form-control" name="tags" placeholder="برچسب ها">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- <label class="control-label col-md-2 col-sm-12 col-xs-2">انتخاب دسته</label> -->
-
-
-                        <div class="form-group col-md-8 col-sm-12 col-xs-8">
-
-                            <button type="button" class="btn btn-primary" id="showFiles" data-toggle="modal"
-                                data-target=".bs-example-modal-lg"><i class="fa fa-attachment"></i> فایل پیوست</button>
-                        </div>
-                        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span
-                                                aria-hidden="true">×</span>
-                                        </button>
-                                        <h4 class="modal-title" id="myModalLabel">انتخاب فایل پیوست</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <ul class="nav navbar-right panel_toolbox">
-                                                <li>
-                                                    <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                                        <a class="btn btn-success" href="/admin/upload"> <i
-                                                                class="fa fa-plus pl-1"></i> آپلود فایل جدید
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="col-md-4 col-sm-12 col-xs-4">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="جستجو ...">
-                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-primary"><i
-                                                                class="fa fa-search"></i></button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ln_solid" style="margin:0px 0 20px 0 ;"></div>
-                                        <div class="modal-file-selector">
-                                            <div class="row top_tiles">
-                                                
-                                                    <% allFiles.forEach(file=>{ %>
-                                                        <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12 select-file">
-                                                                <input type="hidden" value="<%=file.id %>">
-                                                                        <div class="tile-stats">
-                                                                                <div class="icon"><i class="fa fa-file"></i></div>
-                                                                                <div class="count"><%= getExtName(file.path) %></div>
-                                                                                <h3 style="font-size: 15px; margin:20px  10px 0 10px"><%=file.name%></h3>
-                                                                                <p>اندازه : <%= byteToMB(file.size) %> MB</p>
-                                                                        </div>
-                                                            </div>
-                                                        <%})%>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
-                                    </div>
-
-                                </div>
-                            </div>
+                                <label>برچسب ها</label>
+                            <input type="text" class="form-control" name="tags" placeholder="برچسب ها را با , جدا کنید ...">
                         </div>
 
                     </div>
+
+                    
                     <div class="row form-group">
                         <button class="btn btn-primary"> انتشار مطلب</button>
                     </div>
@@ -218,17 +175,74 @@
         </div>
     </div>
 
+    <!-- modal *********************-->
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">انتخاب فایل پیوست</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                    <a class="btn btn-success" href="/admin/upload"> <i class="fa fa-plus pl-1"></i>
+                                        آپلود فایل جدید
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="col-md-4 col-sm-12 col-xs-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="جستجو ...">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider-dashed" style="margin:0px 0 20px 0 ;"></div>
+                    <div class="modal-file-selector">
+                        <div class="row top_tiles">
+
+                            <% allFiles.forEach(file=>{ %>
+                            <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12 select-file"
+                                style="cursor: pointer;" data-fileId="<%=file.id %>" data-fileName="<%=file.name%>">
+
+                                <div class="tile-stats">
+                                    <div class="icon"><i class="fa fa-file"></i></div>
+                                    <div class="count"><%= getExtName(file.path) %></div>
+                                    <h3 style="font-size: 15px; margin:20px  10px 0 10px">
+                                        <%=file.name%></h3>
+                                    <p>اندازه : <%= byteToMB(file.size) %> MB</p>
+                                </div>
+                            </div>
+                            <%})%>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <script>
-    $(".select-file").click(function(e){
-        console.log(e.target)
-    })
     function newPostSubmit(e) {
         let editor = $("#editor");
         let textarea = $("#descr");
         textarea.val(editor.html())
 
     }
-    
 </script>

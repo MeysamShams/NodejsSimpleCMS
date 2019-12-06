@@ -12,18 +12,20 @@ class PostController extends Controller {
         res.render("admin/newPost",{title:"افزودن مطلب جدید",allCats,allFiles})
     }
     
-    
+  
 
     async store(req,res){
-        try{
+            let {category,fileId,title,editor_content,tags}=req.body;
+        try{    
             const newPost=new Post({
                 user:req.user.id,
-                category:req.body.category,
-                file:req.user.id,
-                title:req.body.title,
+                file:fileId,
                 slug:this.slug(req.body.title),
-                body:req.body.editor_content,
-                tags:req.body.tags
+                body:editor_content,
+                image:req.file.path.substr(6),
+                category,
+                title,
+                tags
             })
             await newPost.save();
             res.redirect("/admin/allposts")
@@ -33,6 +35,7 @@ class PostController extends Controller {
             
         }
     }
+
     slug(title){
         return title.replace(/([^۰-۹آ-یa-z0-9]|-)+/g , "-")
     }
