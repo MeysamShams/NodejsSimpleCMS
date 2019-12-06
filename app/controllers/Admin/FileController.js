@@ -35,5 +35,11 @@ class FileController extends Controller{
             throw err
         }
     }
+
+    //return a json for ajax call
+    // async getFiles(req,res){
+    //     let files=await this.getAllFiles();
+    //     res.json(files)
+    // }
 }
 module.exports=new FileController();

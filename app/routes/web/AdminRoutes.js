@@ -29,6 +29,8 @@ router.get("/upload",FileCtr.index)
 router.post("/upload",upload.single('file'),FileCtr.store)
 router.get("/allFiles",FileCtr.showAllFiles)
 
+// //get all files using ajax call
+// router.get("/getFiles",FileCtr.getFiles)
 
 //user
 router.get("/adduser",UserCtr.index)

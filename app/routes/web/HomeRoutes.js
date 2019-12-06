@@ -20,6 +20,7 @@ router.get("/auth/github",passport.authenticate('github' , { scope : ['profile' 
 router.get("/auth/github/callback",passport.authenticate('github' , { successRedirect : '/panel' , failureRedirect : '/register' }))
 
 
+
 router.get("/user",(req,res)=>res.send(req.user))
 
 module.exports=router
