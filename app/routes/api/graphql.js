@@ -1,18 +1,23 @@
 const {gql}=require('apollo-server-express');
+const Category=require('../../models/Category');
+const Post=require('../../models/Post');
+const User=require('../../models/User');
+const File=require('../../models/File');
+const Comment=require('../../models/Comment.js');
 
 let typeDefs=gql`
     type Query{
         sliders:[Slider],
         categories:[Category],
         posts:[Post],
-        post(id:String):Post,
-        user(id:String):User,
-        comments(postId:String):[Comment]
+        post(id:String!):Post,
+        user(id:String!):User,
+        comments(postId:String!):[Comment]
     }
 
     type Slider{
         image:String,
-        href:String
+        link:String
     }
     type Category{
         id:String,
@@ -35,25 +40,42 @@ let typeDefs=gql`
         id:String,
         name:String,
         username:String,
-        avatar:String,
+        profileImage:String,
+        posts:[Post]
     }
     type Comment{
         id:String,
         author:User,
-        parent:Comment,
+        children:[Comment],
         body:String,
         date:String
     }
     type File{
         name:String,
-        link:String,
+        path:String,
         size:String
     }
 `;
 
 let resolvers={
     Query:{
-        user:(parent,args)=> "hello"
+        categories:async(parent,args)=> await Category.find({}),
+        posts:async(parent,args)=>await Post.find({}),
+        post:async(parent,args)=>await Post.findById(args.id),
+        user:async(parent,args)=>await User.findById(args.id),
+        comments:async(parent,args)=>await Comment.find({post:args.postId})
+    },
+    Post:{
+        author:async(parent,args)=> await User.findById(parent.user),
+        file:async(parent,args)=> await File.findById(parent.file),
+        category:async(parent,args)=> await Category.findById(parent.category)
+    },
+    User:{
+        posts:async(parent,args)=> await Post.find({user:parent.id})
+    },
+    Comment:{
+        author:async(parent,args)=>await User.findById(parent.user),
+        children:async(parent,args)=>await Comment.find({parent:parent.id})
     }
 }
 
