@@ -14,6 +14,10 @@ const mongoStore=require('connect-mongo')(session);
 //flash message
 const flash=require('connect-flash');
 
+//apolo server and graphql
+const {ApolloServer}=require('apollo-server-express');
+const {resolvers,typeDefs}=require('./routes/api/graphql');
+
 //ejs layouts
 const expressLayouts = require('express-ejs-layouts');
 
@@ -27,6 +31,7 @@ module.exports=class App{
         this.serverSetup();
         this.mongoConnention();
         this.appConfig();
+        this.setGraphql()
         this.setRoutes();
     }
 
@@ -83,7 +88,11 @@ module.exports=class App{
         })
 
     }
-
+    //graphql
+    setGraphql(){
+        const server=new ApolloServer({typeDefs,resolvers})
+        server.applyMiddleware({app})
+    }
     setRoutes(){
         app.use(require('./routes/web/IndexRoutes.js'))
     }
