@@ -4,6 +4,7 @@ const PostCtr=require('../../controllers/Admin/PostController')
 const CategoryCtr=require('../../controllers/Admin/CategoryController')
 const FileCtr=require('../../controllers/Admin/FileController')
 const UserCtr=require('../../controllers/Admin/UserController')
+const CommentCtr=require("../../controllers/Admin/CommentController")
 const upload=require("../../helpers/FileUpload")
 const ChatCtr=require('../../controllers/Admin/ChatController');
 
@@ -30,9 +31,9 @@ router.get("/upload",FileCtr.index)
 router.post("/upload",upload.single('file'),FileCtr.store)
 router.get("/allFiles",FileCtr.showAllFiles)
 
-//chat
+//chat and Comment
 router.get('/chatroom',ChatCtr.index)
-
+router.get("/comments",CommentCtr.index)
 
 //user
 router.get("/adduser",UserCtr.index)
