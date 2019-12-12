@@ -4,6 +4,8 @@ const bcrypt=require('bcryptjs');
 const passwordHashing=require('../helpers/PasswordHashing');
 const jwt=require('jsonwebtoken');
 
+const {AuthenticationError}=require('apollo-server')
+
 const UserSchema=new Schema({
     name:{type:String,required:true},
     username:{type:String,required:true},
@@ -27,4 +29,18 @@ UserSchema.methods.comparePassword= async function(password){
     }
 }
 
+
+UserSchema.statics.generateToken=async function({id,username},secret){
+    return await jwt.sign({id,username},secret,{expiresIn:"50days"})
+}
+UserSchema.statics.checkToken=async function(req,secret){
+    const token=req.headers['x-auth'];
+    if(token){
+        try{
+            return await jwt.verify(token,secret);
+        }catch {
+            throw new AuthenticationError('invalid token')
+        }
+    }else return undefined
+}
 module.exports=mongoose.model('User',UserSchema);
