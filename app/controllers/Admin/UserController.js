@@ -35,5 +35,16 @@ class UserController extends Controller{
             throw err
         }
     }
+
+
+    async countOfUsers(role) {
+        try {
+            return await User.countDocuments({
+                role
+            })
+        } catch (err) {
+            throw err
+        }
+    }
 }
 module.exports=new UserController();

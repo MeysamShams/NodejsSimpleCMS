@@ -29,5 +29,9 @@ class CategoryController extends Controller {
             throw err;
         }
     }
+
+
+   
+
 }
 module.exports = new CategoryController()

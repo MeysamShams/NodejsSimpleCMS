@@ -1,16 +1,17 @@
 const Controller = require('../Controller.js')
 
 const Post = require('../../models/Post');
-const Category=require('../../models/Category')
-const File=require('../../models/File');
+
+const CategoryCtr=require('./CategoryController');
+const FileCtr=require('./FileController');
 
 const fs=require('fs');
 
 class PostController extends Controller {
 
     async index(req,res){
-        let allCats=await this.getAllCategories();
-        let allFiles=await this.getAllFiles();
+        let allCats=await CategoryCtr.getAllCategories();
+        let allFiles=await FileCtr.getAllFiles();
         res.render("admin/newPost",{title:"افزودن مطلب جدید",allCats,allFiles})
     }
     
@@ -84,21 +85,17 @@ class PostController extends Controller {
         }
     }
 
-    async getAllCategories(){
-        try{
-            return await Category.find({}).select('name')
-        }catch(err){
+
+    async countOfPosts() {
+        try {
+            return await Post.countDocuments({})
+        } catch (err) {
             throw err
         }
     }
 
-    async getAllFiles(){
-        try{
-            return await File.find({})
-        }catch(err){
-            throw err
-        }
-    }
+    
+    
 }   
 
 module.exports = new PostController()

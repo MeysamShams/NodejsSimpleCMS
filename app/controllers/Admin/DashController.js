@@ -1,17 +1,19 @@
 const Controller = require('../Controller.js')
-const User = require('../../models/User');
-const Post = require('../../models/Post');
-const Comment=require('../../models/Comment');
+
+const UserCtr=require('./UserController')
+const PostCtr=require('./PostController')
+
+const Comment=require('../../models/Comment.js')
 
 class DashController extends Controller {
     //show dashboard
     async index(req, res) {
         //count of users and teachers
-        let usersCount = await this.countOfUsers('user');
-        let teachersCount = await this.countOfUsers('teacher');
+        let usersCount = await UserCtr.countOfUsers('user');
+        let teachersCount = await UserCtr.countOfUsers('teacher');
 
         //count of Posts
-        let postsCount=await this.countOfPosts();
+        let postsCount=await PostCtr.countOfPosts();
         
         //count of comments
         let commentsCount=await this.countOfComments();
@@ -25,23 +27,9 @@ class DashController extends Controller {
         })
     }
 
-    async countOfUsers(role) {
-        try {
-            return await User.countDocuments({
-                role
-            })
-        } catch (err) {
-            throw err
-        }
-    }
+    
 
-    async countOfPosts() {
-        try {
-            return await Post.countDocuments({})
-        } catch (err) {
-            throw err
-        }
-    }
+    
 
     async countOfComments() {
         try {
