@@ -34,7 +34,7 @@ let typeDefs=gql`
         image:String,
         tags:String,
         commentsCount:String,
-        date:String
+        createdAt:String
     }
     type User{
         id:String,
