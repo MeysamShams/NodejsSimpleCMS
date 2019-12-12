@@ -13,7 +13,7 @@ class UserController extends Controller{
             const newUser=new User({
                 name,
                 username,
-                password,
+                password:await User.hashing(password),
                 role
             })
             await newUser.save();

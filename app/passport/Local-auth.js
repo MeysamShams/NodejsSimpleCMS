@@ -18,9 +18,9 @@ passport.serializeUser(function(user, done) {
           passReqToCallback:true
       },(req,username,password,done)=>{
           try{
-            User.findOne({username},(err,user)=>{
+            User.findOne({username},async (err,user)=>{
               if(err) done(err,null)
-              if(!user || !user.comparePassword(password)) return done(null,false,req.flash('errors',"اطلاعات وارد شده مطابقت ندارد."))
+              if(!user || ! await user.comparePassword(password)) return done(null,false,req.flash('errors',"اطلاعات وارد شده مطابقت ندارد."))
               done(null,user)
           })
           }catch(err){

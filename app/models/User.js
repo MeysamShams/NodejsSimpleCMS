@@ -1,5 +1,9 @@
 const mongoose=require('mongoose');
 const Schema=require('mongoose').Schema
+const bcrypt=require('bcryptjs');
+const passwordHashing=require('../helpers/PasswordHashing');
+const jwt=require('jsonwebtoken');
+
 const UserSchema=new Schema({
     name:{type:String,required:true},
     username:{type:String,required:true},
@@ -8,9 +12,19 @@ const UserSchema=new Schema({
     profileImage:{type:String,default:"/uploads/default/user-profile.jpg"}
 },{timestamps:true});
 
-
-UserSchema.methods.comparePassword=function(password){
-    return this.password==password ;
+UserSchema.statics.hashing=async function(password){
+    try{
+        return await passwordHashing(password)
+    }catch(err){
+        throw err
+    }
+}
+UserSchema.methods.comparePassword= async function(password){
+    try{
+        return await bcrypt.compare(password,this.password)
+    }catch(err){
+        throw err
+    }
 }
 
 module.exports=mongoose.model('User',UserSchema);
