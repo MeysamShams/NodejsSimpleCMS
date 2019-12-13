@@ -16,7 +16,7 @@ const flash=require('connect-flash');
 
 //apolo server and graphql
 const {ApolloServer}=require('apollo-server-express');
-const {resolvers,typeDefs}=require('./routes/api/graphql');
+const {resolvers,typeDefs,context}=require('./routes/api/graphql');
 
 //ejs layouts
 const expressLayouts = require('express-ejs-layouts');
@@ -94,7 +94,7 @@ module.exports=class App{
     }
     //graphql
     setGraphql(){
-        const server=new ApolloServer({typeDefs,resolvers})
+        const server=new ApolloServer({typeDefs,resolvers,context})
         server.applyMiddleware({app})
     }
     setSocketIO(){

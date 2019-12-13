@@ -132,4 +132,11 @@ let resolvers={
     }
 }
 
-module.exports={typeDefs,resolvers}
+let context=async(req)=>{
+    let user= await User.checkToken(req);
+    return{
+        user
+    } 
+}
+
+module.exports={typeDefs,resolvers,context}
