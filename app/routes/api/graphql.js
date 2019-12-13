@@ -79,26 +79,28 @@ let resolvers={
     Mutation:{
         register:async(parent,args)=>{
             let {name,username,password}=args;
+            let checkUser=await User.find({username});
+            if(checkUser) throw new UserInputError("username already exists!")
             let user=await User.create({
                 name,
                 username,
                 password: await User.hashing(password)
             });
             return{
-                token:await UserModel.generateToken(user.id,user.username),
+                token:await User.generateToken(user.id,user.username),
                 user
             }
         },
 
         login:async(parent,args)=>{
                 let {username,password}=args;
-                let user=await UserModel.findOne({username});
+                let user=await User.findOne({username});
                 if(!user) throw new UserInputError('invalid username')
                 if(!await user.comparePassword(password)){
                     throw new AuthenticationError('invalid password')
                 }
                 return {
-                    token:await UserModel.generateToken(user.id,user.username),
+                    token:await User.generateToken(user.id,user.username),
                     user
                 }
         },
