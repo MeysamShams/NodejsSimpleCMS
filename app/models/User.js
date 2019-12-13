@@ -30,14 +30,14 @@ UserSchema.methods.comparePassword= async function(password){
 }
 
 
-UserSchema.statics.generateToken=async function({id,username},secret){
-    return await jwt.sign({id,username},secret,{expiresIn:"50days"})
+UserSchema.statics.generateToken=async function({id,username}){
+    return await jwt.sign({id,username},"],vdk,;],gi",{expiresIn:"50days"})
 }
 UserSchema.statics.checkToken=async function(req,secret){
     const token=req.headers['x-auth'];
     if(token){
         try{
-            return await jwt.verify(token,secret);
+            return await jwt.verify(token,"],vdk,;],gi");
         }catch {
             throw new AuthenticationError('invalid token')
         }

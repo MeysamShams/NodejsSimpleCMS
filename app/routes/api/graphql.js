@@ -4,6 +4,7 @@ const Post=require('../../models/Post');
 const User=require('../../models/User');
 const File=require('../../models/File');
 const Comment=require('../../models/Comment.js');
+const {UserInputError,AuthenticationError,ForbiddenError}=require('apollo-server')
 
 let typeDefs=gql`
     type Query{
@@ -13,6 +14,16 @@ let typeDefs=gql`
         post(id:String!):Post,
         user(id:String!):User,
         comments(postId:String!):[Comment]
+    }
+
+    type Mutation{
+        register(name:String!,username:String!,password:String!):Token!,
+        login(username:String!,password:String!):Token!,
+        addComment(postId:String!,body:String!,parentId:String) : String
+    }
+    type Token{
+        token:String,
+        user:User
     }
 
     type Slider{
@@ -64,6 +75,46 @@ let resolvers={
         post:async(parent,args)=>await Post.findById(args.id),
         user:async(parent,args)=>await User.findById(args.id),
         comments:async(parent,args)=>await Comment.find({post:args.postId})
+    },
+    Mutation:{
+        register:async(parent,args)=>{
+            let {name,username,password}=args;
+            let user=await User.create({
+                name,
+                username,
+                password: await User.hashing(password)
+            });
+            return{
+                token:await UserModel.generateToken(user.id,user.username),
+                user
+            }
+        },
+
+        login:async(parent,args)=>{
+                let {username,password}=args;
+                let user=await UserModel.findOne({username});
+                if(!user) throw new UserInputError('invalid username')
+                if(!await user.comparePassword(password)){
+                    throw new AuthenticationError('invalid password')
+                }
+                return {
+                    token:await UserModel.generateToken(user.id,user.username),
+                    user
+                }
+        },
+
+        addComment:async(parent,args,context)=>{
+                if(! context.user) throw new ForbiddenError('invalid token')
+                let {postId,parentId,body}=args
+
+                return await CommentModel.create({
+                    user:context.user.id,
+                    post:postId,
+                    parentId:parentId || null,
+                    body,
+
+                })
+        }
     },
     Post:{
         author:async(parent,args)=> await User.findById(parent.user),
