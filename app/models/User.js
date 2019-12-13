@@ -30,7 +30,7 @@ UserSchema.methods.comparePassword= async function(password){
 }
 
 
-UserSchema.statics.generateToken=async function({id,username}){
+UserSchema.statics.generateToken=async function(id,username){
     return await jwt.sign({id,username},"],vdk,;],gi",{expiresIn:"50days"})
 }
 UserSchema.statics.checkToken=async function(req,secret){

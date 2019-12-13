@@ -1,5 +1,9 @@
 const Controller=require('../Controller.js');
 const {validationResult}=require('express-validator')
+
+const {UserInputError}=require('apollo-server')
+const User=require("../../models/User");
+
 const passport=require('passport');
 
 class LoginController extends Controller{
@@ -39,6 +43,22 @@ class LoginController extends Controller{
         if(req.user.role=="admin") return res.redirect("/admin")
         if(req.user.role=="teacher") return res.redirect("/teacher")
         if(req.user.role=="user") return res.redirect("/user")
+    }
+
+
+    //api ************************
+    async apiLogin(parent,args){
+       
+            let {username,password}=args;
+            let user=await User.findOne({username});
+            if(!user) throw new UserInputError('invalid username')
+            if(!await user.comparePassword(password)){
+                throw new AuthenticationError('invalid password')
+            }
+            return {
+                token:await User.generateToken(user.id,user.username),
+                user
+            }
     }
 }
 

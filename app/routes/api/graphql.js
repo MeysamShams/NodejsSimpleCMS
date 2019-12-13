@@ -4,7 +4,11 @@ const Post=require('../../models/Post');
 const User=require('../../models/User');
 const File=require('../../models/File');
 const Comment=require('../../models/Comment.js');
-const {UserInputError,AuthenticationError,ForbiddenError}=require('apollo-server')
+
+const LoginCtrl=require("../../controllers/Auth/LoginController");
+const RegisterCtrl=require("../../controllers/Auth/RegisterController");
+const CommentCtrl=require("../../controllers/Admin/CommentController");
+
 
 let typeDefs=gql`
     type Query{
@@ -19,7 +23,7 @@ let typeDefs=gql`
     type Mutation{
         register(name:String!,username:String!,password:String!):Token!,
         login(username:String!,password:String!):Token!,
-        addComment(postId:String!,body:String!,parentId:String) : String
+        addComment(postId:String!,body:String!,parentId:String) : Comment
     }
     type Token{
         token:String,
@@ -74,49 +78,14 @@ let resolvers={
         posts:async(parent,args)=>await Post.find({}),
         post:async(parent,args)=>await Post.findById(args.id),
         user:async(parent,args)=>await User.findById(args.id),
-        comments:async(parent,args)=>await Comment.find({post:args.postId})
+        comments:async(parent,args)=>await Comment.find({post:args.postId,parentId:null,approved:true})
     },
     Mutation:{
-        register:async(parent,args)=>{
-            let {name,username,password}=args;
-            let checkUser=await User.find({username});
-            if(checkUser) throw new UserInputError("username already exists!")
-            let user=await User.create({
-                name,
-                username,
-                password: await User.hashing(password)
-            });
-            return{
-                token:await User.generateToken(user.id,user.username),
-                user
-            }
-        },
+        register:RegisterCtrl.apiRegister,
 
-        login:async(parent,args)=>{
-                let {username,password}=args;
-                let user=await User.findOne({username});
-                if(!user) throw new UserInputError('invalid username')
-                if(!await user.comparePassword(password)){
-                    throw new AuthenticationError('invalid password')
-                }
-                return {
-                    token:await User.generateToken(user.id,user.username),
-                    user
-                }
-        },
+        login:LoginCtrl.apiLogin,
 
-        addComment:async(parent,args,context)=>{
-                if(! context.user) throw new ForbiddenError('invalid token')
-                let {postId,parentId,body}=args
-
-                return await CommentModel.create({
-                    user:context.user.id,
-                    post:postId,
-                    parentId:parentId || null,
-                    body,
-
-                })
-        }
+        addComment: CommentCtrl.apiAddComment
     },
     Post:{
         author:async(parent,args)=> await User.findById(parent.user),
@@ -128,11 +97,11 @@ let resolvers={
     },
     Comment:{
         author:async(parent,args)=>await User.findById(parent.user),
-        children:async(parent,args)=>await Comment.find({parent:parent.id})
+        children:async(parent,args)=>await Comment.find({parentId:parent.id})
     }
 }
 
-let context=async(req)=>{
+let context=async({req})=>{
     let user= await User.checkToken(req);
     return{
         user
