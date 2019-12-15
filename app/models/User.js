@@ -39,7 +39,7 @@ UserSchema.statics.checkToken=async function(req,secret){
         try{
             return await jwt.verify(token,"],vdk,;],gi");
         }catch {
-            throw new AuthenticationError('invalid token')
+            return undefined
         }
     }else return undefined
 }

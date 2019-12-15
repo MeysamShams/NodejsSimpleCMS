@@ -60,6 +60,11 @@ class LoginController extends Controller{
                 user
             }
     }
+
+     apiCheckToken(parent,args,context){
+        if(context.user) return true
+        return false    
+    }
 }
 
 module.exports=new LoginController();

@@ -18,6 +18,7 @@ let typeDefs=gql`
         post(id:String!):Post,
         user(id:String!):User,
         comments(postId:String!):[Comment]
+        checkToken:Boolean
     }
 
     type Mutation{
@@ -44,12 +45,16 @@ let typeDefs=gql`
         author:User,
         file:File,
         category:Category
+        commentsCount:CommentsCount,
         title:String,
         body:String,
         image:String,
         tags:String,
-        commentsCount:String,
         createdAt:String
+    }
+    type CommentsCount{
+        count:String,
+        data:String
     }
     type User{
         id:String,
@@ -78,7 +83,9 @@ let resolvers={
         posts:async(parent,args)=>await Post.find({}),
         post:async(parent,args)=>await Post.findById(args.id),
         user:async(parent,args)=>await User.findById(args.id),
-        comments:async(parent,args)=>await Comment.find({post:args.postId,parentId:null,approved:true})
+        comments:async(parent,args)=>await Comment.find({post:args.postId,parentId:null,approved:true}),
+        checkToken: LoginCtrl.apiCheckToken,
+
     },
     Mutation:{
         register:RegisterCtrl.apiRegister,
@@ -90,7 +97,13 @@ let resolvers={
     Post:{
         author:async(parent,args)=> await User.findById(parent.user),
         file:async(parent,args)=> await File.findById(parent.file),
-        category:async(parent,args)=> await Category.findById(parent.category)
+        category:async(parent,args)=> await Category.findById(parent.category),
+        commentsCount:async(parent,args)=> {
+            let count=await Comment.countDocuments({post:parent.id,approved:true});
+            return {
+                count,
+            };
+        }
     },
     User:{
         posts:async(parent,args)=> await Post.find({user:parent.id})

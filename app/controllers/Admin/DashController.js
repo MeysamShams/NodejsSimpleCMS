@@ -17,6 +17,8 @@ class DashController extends Controller {
         
         //count of comments
         let commentsCount=await this.countOfComments();
+        console.log(commentsCount);
+        
 
         res.render("admin/home", {
             title: "پیشخوان ",
