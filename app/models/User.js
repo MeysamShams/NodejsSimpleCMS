@@ -11,7 +11,7 @@ const UserSchema=new Schema({
     username:{type:String,required:true},
     password:{type:String,trim:true,required:true},
     role:{type:String,default:'user'},
-    profileImage:{type:String,default:"/uploads/default/user-profile.jpg"}
+    profileImage:{type:String,default:"http://s6.picofile.com/file/8382166268/New_Project.png"}
 },{timestamps:true});
 
 UserSchema.statics.hashing=async function(password){

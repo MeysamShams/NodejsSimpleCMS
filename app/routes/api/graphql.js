@@ -14,7 +14,7 @@ let typeDefs=gql`
     type Query{
         sliders:[Slider],
         categories:[Category],
-        posts:[Post],
+        posts(categoryId:String):[Post],
         post(id:String!):Post,
         user(id:String!):User,
         comments(postId:String!):[Comment]
@@ -39,6 +39,10 @@ let typeDefs=gql`
         id:String,
         image:String,
         name:String
+        postsCount:PostsCount
+    }
+    type PostsCount{
+        count:String
     }
     type Post{
         id:String,
@@ -54,7 +58,6 @@ let typeDefs=gql`
     }
     type CommentsCount{
         count:String,
-        data:String
     }
     type User{
         id:String,
@@ -68,7 +71,7 @@ let typeDefs=gql`
         author:User,
         children:[Comment],
         body:String,
-        date:String
+        createdAt:String
     }
     type File{
         name:String,
@@ -80,10 +83,13 @@ let typeDefs=gql`
 let resolvers={
     Query:{
         categories:async(parent,args)=> await Category.find({}),
-        posts:async(parent,args)=>await Post.find({}),
+        posts:async(parent,args)=>{
+            if(args.categoryId!="null"){return await Post.find({category:args.categoryId}).sort({createdAt:-1})}
+            else return await Post.find({}).sort({createdAt:-1})
+        },
         post:async(parent,args)=>await Post.findById(args.id),
         user:async(parent,args)=>await User.findById(args.id),
-        comments:async(parent,args)=>await Comment.find({post:args.postId,parentId:null,approved:true}),
+        comments:async(parent,args)=>await Comment.find({post:args.postId,parentId:null,approved:true}).sort({createdAt:-1}),
         checkToken: LoginCtrl.apiCheckToken,
 
     },
@@ -100,6 +106,14 @@ let resolvers={
         category:async(parent,args)=> await Category.findById(parent.category),
         commentsCount:async(parent,args)=> {
             let count=await Comment.countDocuments({post:parent.id,approved:true});
+            return {
+                count,
+            };
+        }
+    },
+    Category:{
+        postsCount:async(parent,args)=> {
+            let count=await Post.countDocuments({category:parent.id,});
             return {
                 count,
             };

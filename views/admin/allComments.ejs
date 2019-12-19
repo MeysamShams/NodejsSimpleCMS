@@ -1,0 +1,78 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>نظرات کاربران
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                        <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                <a class="btn btn-success" href="/admin/post"> <i class="fa fa-plus pl-1"></i> افزودن مطلب جدید
+                                </a>
+                            </div>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+           <br>
+           <ul class="list-unstyled msg_list" >
+
+
+            <% comments.forEach(comment=>{ %> 
+            
+                <li style="display:block;background:#f1f1f1;padding: 10px;  width:100% !important; margin:10px 0px">
+                    <a href="/post/<%= comment.post.slug %>">
+                <span class="image">
+                  <img src="<%=comment.user.profileImage %>" alt="img">
+                </span>
+                <span>
+                  <span style="font-weight: bold;"><%=comment.user.name %></span>
+                  <span class="time" style="left: 50px;"><%=comment.createdAt %></span>
+                </span>
+                <div style="padding: 10px 0;">
+                    <div>
+                        <% if(comment.parentId) {%>  در پاسخ به کامنت : <%=comment.parentId.body %> <%}%>
+                    </div>
+                    <div>
+                            مربوط به پست : <%=comment.post.title %>
+                    </div>
+                </div>
+                <span class="message">
+                    <%=comment.body %>
+                </span>
+                    </a>
+                </li>
+                     <div>
+        
+                        <div class="row" style="margin:5px 0px; ">
+                            <form action="/admin/comments/approve" method="POST" style=" float: right;">
+        
+                                <input type="hidden" name="commentId" value="<%=comment.id %>" required>
+                                <button class="btn btn-info btn-xs">تایید <i class="fa fa-check"></i></button>
+                
+                            </form>
+                                <button class="btn btn-success btn-xs show-reply" >پاسخ دادن <i class="fa fa-reply"></i></button>
+                                <button class="btn btn-danger btn-xs">حذف <i class="fa fa-trash"></i> </button>
+                        </div>
+                        <div class="reply-form" style="display: none;">
+                            <form action="/admin/comments/addReply" method="POST">
+                                <input type="hidden" name="postId" value="<%=comment.post.id %>" required>
+                                <input type="hidden" name="parentId" value="<%=comment.id %>" required>
+                                <textarea id="message" required="required" class="form-control" rows="5" name="reply" placeholder="لطفا پاسخ خود را وارد نمایید ..." ></textarea>
+                                <button class="btn btn-primary" style="margin-top: 10px;">ارسال پاسخ</button>
+                            </form>
+                        </div>
+                     </div>
+            
+            
+            
+            
+            <%})%>
+
+           
+        </ul>
+        </div>
+    </div>
+</div>
+

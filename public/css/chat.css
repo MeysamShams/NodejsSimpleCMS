@@ -2,7 +2,7 @@
     overflow-y: auto;
     height: 420px;
     margin-bottom: 10px;
-    background:  url('/img/chat-background.jpg') repeat ; 
+    background:  #e5e5e5; 
 }
 #chat-background{
     /* background: #EFFDDE; */

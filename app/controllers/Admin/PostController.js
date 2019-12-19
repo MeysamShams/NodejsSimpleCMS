@@ -20,7 +20,7 @@ class PostController extends Controller {
         try{    
             const newPost=new Post({
                 user:req.user.id,
-                file:fileId,
+                file:fileId||null,
                 slug:this.slug(req.body.title),
                 body:editor_content,
                 image:req.file.path.substr(6),

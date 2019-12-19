@@ -33,7 +33,10 @@ router.get("/allFiles",FileCtr.showAllFiles)
 
 //chat and Comment
 router.get('/chatroom',ChatCtr.index)
+
 router.get("/comments",CommentCtr.index)
+router.post("/comments/addReply",CommentCtr.addReply)
+router.post("/comments/approve",CommentCtr.approveComment)
 
 //user
 router.get("/adduser",UserCtr.index)
