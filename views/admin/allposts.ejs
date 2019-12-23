@@ -34,7 +34,7 @@
                                         <td ><a href="/post/<%= post.slug %>"><%= post.title%> </a></td>
                                         <td><%= post.user.name%></td>
                                         <td><%=post.body.substring(0,70) %></td>
-                                        <td><%= jalaliDate(post.createdAt).format("jYYYY/jDD/jMM") %></td>
+                                        <td><%= jalaliDate(post.createdAt).format("jYYYY/jMM/jDD") %></td>
                                         <td class="nowrap">
                                             <form action="/admin/post/delete" method="POST">
                                                 <input type="hidden" name="id" value="<%= post.id %>">

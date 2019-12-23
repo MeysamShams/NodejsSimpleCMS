@@ -98,7 +98,9 @@ module.exports=class App{
         server.applyMiddleware({app})
     }
     setSocketIO(){
-        io.on('connection',Chat.connection)
+        io
+        .of("/")
+        .on('connection',Chat.connection)
     }
 
     setRoutes(){

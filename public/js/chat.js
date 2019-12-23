@@ -7,7 +7,9 @@ $(function(){
         data.msg=$('#chat-input').val();
         data.user=$('#name').val()
         data.avatar=$('#avatar').val()
-        if(data.msg&&data.user&&data.avatar){
+        data.userId=$("#userid").val();
+        data.date=Date.now();
+        if(data.msg&&data.user&&data.avatar&&data.userId){
             socket.emit("message",data)
             $('#chat-input').val("");
             appendMessage(data,'owner-message');
