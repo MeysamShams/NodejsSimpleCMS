@@ -1,21 +1,21 @@
 <div class="row top_tiles">
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
-                <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
+                <div class="icon"><i class="fa fa-align-center" style="font-size: 40px;"></i></div>
                 <div class="count"><%= postsCount %></div>
                 <h3>کل مطالب</h3>
             </div>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
-                <div class="icon"><i class="fa fa-comments-o"></i></div>
+                <div class="icon"><i class="fa fa-comments-o" style="font-size: 40px;"></i></div>
                 <div class="count"><%= commentsCount %></div>
                 <h3>تعداد گفتگوها</h3>
             </div>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
-                <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
+                <div class="icon"><i class="fa fa-user" style="font-size: 40px;"></i></div>
                 <div class="count"> <%= teachersCount  %></div>
                
                 <h3>تعداد اساتید</h3>
@@ -23,7 +23,7 @@
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
-                <div class="icon"><i class="fa fa-check-square-o"></i></div>
+                <div class="icon"><i class="fa fa-graduation-cap" style="font-size: 40px;"></i></div>
                 <div class="count"><%= usersCount %></div>
                 <h3>تعداد دانشجویان</h3>
             </div>
@@ -57,38 +57,26 @@
                         <div class="dashboard-widget-content">
 
                                 <ul class="list-unstyled timeline widget">
-                                    <li>
-                                        <div class="block">
-                                            <div class="block_content">
-                                                <h2 class="title">
-                                                    <a>چه کسی نیاز به یک پنل مدیریت خوب دارد؟</a>
-                                                </h2>
-                                                <div class="byline">
-                                                    <span>13 ساعت پیش</span> توسط <a>مرتضی کریمی</a>
+                                   
+                                    <% lastPosts.forEach(post=>{%> 
+                                        
+                                        
+                                        <li>
+                                            <div class="block">
+                                                <div class="block_content">
+                                                    <h2 class="title">
+                                                        <a><%=post.title %></a>
+                                                    </h2>
+                                                    <div class="byline">
+                                                        توسط <a><%= post.user.name %></a>
+                                                    </div>
+                                                    <p class="excerpt"><%=post.body.substr(0,150)  %>... 
+                                                    </p>
                                                 </div>
-                                                <p class="excerpt">این یک متن نمونه برای بخش داشبورد پنل مدیریت پارسی
-                                                    شده ی Gentelella می باشد که برای نمایش امکانات آن نوشته شده است و
-                                                    هیچ معنا و مفهوم خاصی ندارد… <a>بیشتر&nbsp;بخوانید</a>
-                                                </p>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="block">
-                                            <div class="block_content">
-                                                <h2 class="title">
-                                                    <a>چه کسی نیاز به یک پنل مدیریت خوب دارد؟</a>
-                                                </h2>
-                                                <div class="byline">
-                                                    <span>13 ساعت پیش</span> توسط <a>مرتضی کریمی</a>
-                                                </div>
-                                                <p class="excerpt">این یک متن نمونه برای بخش داشبورد پنل مدیریت پارسی
-                                                    شده ی Gentelella می باشد که برای نمایش امکانات آن نوشته شده است و
-                                                    هیچ معنا و مفهوم خاصی ندارد… <a>بیشتر&nbsp;بخوانید</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+
+                                    <%})%>
                                 
                                     
                                 </ul>
@@ -101,7 +89,7 @@
     <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>آخرین گفتگوها </h2>
+                    <h2>آخرین نظرات </h2>
                     <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -123,62 +111,28 @@
                 <div class="x_content">
 
                         <ul class="list-unstyled msg_list">
-                                <li>
-                                    <a>
-                                <span class="image">
-                                  <img src="<%= auth.user.profileImage %>" alt="img">
-                                </span>
-                                        <span>
-                                  <span>مرتضی کریمی</span>
-                                  <span class="time">3 دقیقه پیش</span>
-                                </span>
-                                        <span class="message">
-                                  فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که...
-                                </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                <span class="image">
-                                  <img src="<%= auth.user.profileImage %>" alt="img">
-                                </span>
-                                        <span>
-                                  <span>مرتضی کریمی</span>
-                                  <span class="time">3 دقیقه پیش</span>
-                                </span>
-                                        <span class="message">
-                                  فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که...
-                                </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                <span class="image">
-                                  <img src="<%= auth.user.profileImage %>" alt="img">
-                                </span>
-                                        <span>
-                                  <span>مرتضی کریمی</span>
-                                  <span class="time">3 دقیقه پیش</span>
-                                </span>
-                                        <span class="message">
-                                  فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که...
-                                </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                <span class="image">
-                                  <img src="<%= auth.user.profileImage %>" alt="img">
-                                </span>
-                                        <span>
-                                  <span>مرتضی کریمی</span>
-                                  <span class="time">3 دقیقه پیش</span>
-                                </span>
-                                        <span class="message">
-                                  فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که...
-                                </span>
-                                    </a>
-                                </li>
+
+                                <%lastComments.forEach(com=>{%> 
+                                    <li>
+                                        <a>
+                                    <span class="image">
+                                      <img src="<%= com.user.profileImage %>" alt="img">
+                                    </span>
+                                            <span>
+                                      <span><%= com.user.name %></span>
+                                      <!-- <span class="time"><%=com.createdAt%></span> -->
+                                    </span>
+                                            <span class="message">
+                                                <%= com.body %>
+                                    </span>
+                                        </a>
+                                    </li>
+                                <%})%>
+
+
+                         
+                          
+                             
                             </ul>
                     
                 </div>

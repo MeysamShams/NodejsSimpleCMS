@@ -56,7 +56,7 @@ class LoginController extends Controller{
                 throw new AuthenticationError('invalid password')
             }
             return {
-                token:await User.generateToken(user.id,user.username),
+                token:await User.generateToken(user.id,user.username,user.profileImage),
                 user
             }
     }

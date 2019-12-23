@@ -2,6 +2,7 @@ const Controller = require('../Controller.js')
 
 const UserCtr=require('./UserController')
 const PostCtr=require('./PostController')
+const Post=require('../../models/Post')
 
 const Comment=require('../../models/Comment.js')
 
@@ -17,7 +18,15 @@ class DashController extends Controller {
         
         //count of comments
         let commentsCount=await this.countOfComments();
-        console.log(commentsCount);
+
+        //last comments
+        let lastComments=await Comment.find({approved:true}).populate(['user']).sort({createdAt:-1}).limit(5)
+
+        //last posts
+        let lastPosts=await Post.find({}).populate(['user']).sort({createdAt:-1}).limit(3);
+
+        // console.log(lastComments,lastPosts)
+        // console.log(commentsCount);
         
 
         res.render("admin/home", {
@@ -25,7 +34,9 @@ class DashController extends Controller {
             usersCount,
             teachersCount,
             postsCount,
-            commentsCount
+            commentsCount,
+            lastComments,
+            lastPosts
         })
     }
 

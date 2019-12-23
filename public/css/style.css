@@ -18,6 +18,9 @@ button,input{
     text-align: center;
 }
 .form-container{
+    box-shadow: 0px 0px 15px #00000010;
+    border-radius: 5px;
+    padding: 5px 0;
     background: white;
     min-width: 400px;
     position: absolute;
@@ -36,7 +39,7 @@ button,input{
     padding: 10px 20px;
 }
 .form-footer{
-    border-top: 1px solid #dedede;
+    /* border-top: 1px solid #dedede; */
     padding: 10px 20px;
 }
 .form-group{

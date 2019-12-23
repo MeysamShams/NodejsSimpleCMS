@@ -34,8 +34,9 @@
     <div class="main_container">
         <div class="col-md-3 left_col menu_fixed hidden-print">
             <div class="left_col menu_fixed">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><span class="fa fa-question"></span> <span>پرسش و پاسخ</span></a>
+                <div class="navbar nav_title" style="border: 0; background: #172d44;">
+                    <a href="/" class="site_title" style="text-align: center;"><span style="color: #5A738E;">QandA</span></a>
+                    
                 </div>
 
                 <div class="clearfix"></div>
@@ -47,7 +48,7 @@
                             <img src="<%= auth.user.profileImage %>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
-                            <span>خوش آمدید,</span>
+                            <span>خوش آمدید ,</span>
                             <h2><%= auth.user.name %></h2>
                         </div>
                     </a>
@@ -60,7 +61,7 @@
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> مدیریت مطالب <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-sticky-note"></i> مدیریت مطالب <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="/admin/post">افزودن مطلب جدید</a></li>
                                     <li><a href="/admin/post/allposts">همه مطالب</a></li>
@@ -75,7 +76,7 @@
                                 </ul>
                             </li>
 
-                            <li><a><i class="fa fa-list"></i> مدیریت فایل ها<span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-upload"></i> مدیریت فایل ها<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="/admin/upload">آپلود فایل جدید</a></li>
                                     <li><a href="/admin/allFiles">مشاهده فایل ها</a></li>
@@ -84,15 +85,15 @@
                             </li>
 
 
-                            <li><a><i class="fa fa-desktop"></i> بحث و گفتگو <span
+                            <li><a><i class="fa fa-comments"></i> بحث و گفتگو <span
                                     class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="/admin/comments">نظرات کاربران</a></li>
-                                    <li><a href="/admin/chatroom">پرسش و پاسخ عمومی</a></li>
+                                    <li><a href="/admin/chatroom">بحث و گفتگو</a></li>
                                 </ul>
                             </li>
 
-                            <li><a><i class="fa fa-table"></i> مدیریت کاربران <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-users"></i> مدیریت کاربران <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="/admin/adduser">افزودن کاربر جدید</a></li>
                                     <li><a href="/admin/allUsers">مشاهده کاربران</a></li>
@@ -154,61 +155,11 @@
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                                aria-expanded="false">
                                 <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
+                                <span class="badge bg-green">0</span>
                             </a>
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                                        <!-- <span class="image"><img src="../build/images/img.jpg"
-                                                                 alt="Profile Image"/></span> -->
-                                        <span>
-                          <span>مرتضی کریمی</span>
-                          <span class="time">3 دقیقه پیش</span>
-                        </span>
-                                        <span class="message">
-                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <!-- <span class="image"><img src="../build/images/img.jpg"
-                                                                 alt="Profile Image"/></span> -->
-                                        <span>
-                          <span>مرتضی کریمی</span>
-                          <span class="time">3 دقیقه پیش</span>
-                        </span>
-                                        <span class="message">
-                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <!-- <span class="image"><img src="../build/images/img.jpg"
-                                                                 alt="Profile Image"/></span>
-                                        <span> -->
-                          <span>مرتضی کریمی</span>
-                          <span class="time">3 دقیقه پیش</span>
-                        </span>
-                                        <span class="message">
-                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <!-- <a>
-                                        <span class="image"><img src="../build/images/img.jpg"
-                                                                 alt="Profile Image"/></span> -->
-                                        <span>
-                          <span>مرتضی کریمی</span>
-                          <span class="time">3 دقیقه پیش</span>
-                        </span>
-                                        <span class="message">
-                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....
-                        </span>
-                                    </a>
-                                </li>
+                
+                             
                                 <li>
                                     <div class="text-center">
                                         <a>
