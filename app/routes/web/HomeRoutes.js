@@ -5,8 +5,12 @@ const passport = require('passport');
 
 const PostCtr=require('../../controllers/Admin/PostController.js')
 //show index page
-router.get("/",LoginCrt.index);
-
+// router.get("/",LoginCrt.index);
+var i=0;
+router.get("/",(req,res)=>{
+    console.log(i++);
+    res.send("1");
+})
 //local login
 router.get("/panel",LoginCrt.checkRole)
 router.post("/auth/login",validation.loginValidation(),LoginCrt.loginProcess)

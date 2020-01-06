@@ -1,0 +1,9 @@
+{
+    "port": 8080,
+    "node": {
+      "version": "12",
+      "npmAudit": true
+    }
+    
+    
+  }

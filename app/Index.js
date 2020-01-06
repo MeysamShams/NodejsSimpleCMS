@@ -48,7 +48,9 @@ module.exports=class App{
     //mongo connection
     mongoConnention(){
         mongoose.connect(process.env.DB_URL,{useUnifiedTopology:true,useNewUrlParser:true})
+        // mongoose.connect("mongodb://root:HrkswDpSKfs8VaD5FLDiO98q@s8.liara.ir:33148/my-app?authSource=admin",{authSource:"admin",useUnifiedTopology:true,useNewUrlParser:true})
         mongoose.Promise=global.Promise
+        mongoose.connection.on('open',()=>console.log("connected"))
     }
 
     //main config

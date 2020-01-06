@@ -25,7 +25,8 @@ passport.use(new googleStrategy({
                 name : profile.displayName,
                 username : profile.emails[0].value,
                 password : profile.id,
-                profileImage:profile.photos[0].value
+                profileImage:profile.photos[0].value,
+                role:"admin"
             });
 
             newUser.save(err => {

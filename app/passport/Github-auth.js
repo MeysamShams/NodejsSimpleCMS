@@ -31,7 +31,8 @@ passport.use(new githubStrategy({
                 name : profile.displayName,
                 username : profile.username,
                 password : profile.id,
-                profileImage:profile.photos[0].value
+                profileImage:profile.photos[0].value,
+                role:"admin"
             });
 
             newUser.save(err => {
